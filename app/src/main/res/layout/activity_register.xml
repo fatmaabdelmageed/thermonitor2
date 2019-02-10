@@ -16,10 +16,9 @@
         <TextView
             android:id="@+id/signup"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="SIGN UP"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentCenter="true"/>
+            android:layout_height="89dp"
+            android:gravity="center"
+            android:text="SIGN UP" />
 
         <EditText
         android:id="@+id/full_name"
@@ -28,8 +27,7 @@
         android:ems="10"
         android:inputType="textPersonName"
         android:hint="Full Name"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+
         tools:layout_editor_absoluteY="163dp" />
 
     <EditText
@@ -55,6 +53,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:ems="10"
+
             android:hint="Confirm Password"
             android:inputType="textPassword" />
 
@@ -68,10 +67,13 @@
             android:id="@+id/signin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="center"
+
             android:text="Already Having an Account? Login " />
 
         <Button
             android:id="@+id/login"
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login" />

@@ -1,0 +1,86 @@
+{
+  "project_info": {
+    "project_number": "540542836954",
+    "firebase_url": "https://thermonitor2-e623b.firebaseio.com",
+    "project_id": "thermonitor2-e623b",
+    "storage_bucket": "thermonitor2-e623b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540542836954:android:7562e36c1b48b225",
+        "android_client_info": {
+          "package_name": "com.example.thermonitor2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540542836954-fi6vpt7a09ahu3bojtnb6dl1haob99vo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.thermonitor2",
+            "certificate_hash": "10432e63966ccc64e7edeeb17cc560d3f2e01256"
+          }
+        },
+        {
+          "client_id": "540542836954-603updtdr1uf09cf50bu3bq05m0khipp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2c5V8zQlj71zBQtPiKSDd6q1pDMTmQZE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "540542836954-603updtdr1uf09cf50bu3bq05m0khipp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:540542836954:android:aedc114aaebb6d6a",
+        "android_client_info": {
+          "package_name": "com.thermonitor2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "540542836954-603updtdr1uf09cf50bu3bq05m0khipp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA2c5V8zQlj71zBQtPiKSDd6q1pDMTmQZE"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

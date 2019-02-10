@@ -7,22 +7,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
-import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.AuthResult;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
@@ -32,18 +25,24 @@ public class MainActivity extends AppCompatActivity {
     TextView signup;
     ImageView lock;
     FirebaseAuth firebaseAuth;
-    private FirebaseAuth.AuthStateListener authStateListener;
+    FirebaseAuth.AuthStateListener authStateListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        FirebaseApp.initializeApp(this);
         setContentView(R.layout.activity_main);
-        firebaseAuth = FirebaseAuth.getInstance();
+
+        firebaseAuth = FirebaseAuth.getInstance(); //error
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         lock= findViewById(R.id.lock);
         signup = findViewById(R.id.registertext);
         register = findViewById(R.id.registerbutton);
         btnLogin = (Button) findViewById(R.id.button);
+
+
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -77,6 +76,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 String userEmail = email.getText().toString();
                 String userPaswd = password.getText().toString();
+
                 if (userEmail.isEmpty()) {
                     email.setError("Provide your Email first!");
                     email.requestFocus();
