@@ -77,4 +77,8 @@ public class RegisterActivity<email, password> extends AppCompatActivity {
                 }
             });
         }
+    protected void onStart() {
+        super.onStart();
+        //firebaseAuth.addAuthStateListener(authStateListener);
+    }
     }

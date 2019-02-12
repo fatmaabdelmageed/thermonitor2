@@ -31,16 +31,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        FirebaseApp.initializeApp(this);
+            FirebaseApp.initializeApp(this);
+
+
+       // FirebaseApp.initializeApp(this);
+        firebaseAuth = FirebaseAuth.getInstance(); //error
+
         setContentView(R.layout.activity_main);
 
-        firebaseAuth = FirebaseAuth.getInstance(); //error
+//        firebaseAuth = FirebaseAuth.getInstance(); //error
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
         lock= findViewById(R.id.lock);
         signup = findViewById(R.id.registertext);
         register = findViewById(R.id.registerbutton);
-        btnLogin = (Button) findViewById(R.id.button);
+        btnLogin = (Button) findViewById(R.id.buttonLogin);
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -54,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     Toast.makeText(MainActivity.this, "User logged in ", Toast.LENGTH_SHORT).show();
@@ -64,10 +70,10 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         };
-        signup.setOnClickListener(new View.OnClickListener() {
+        register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent I = new Intent(MainActivity.this, ListActivity.class);
+                Intent I = new Intent(MainActivity.this, RegisterActivity.class);
                 startActivity(I);
             }
         });
@@ -80,28 +86,38 @@ public class MainActivity extends AppCompatActivity {
                 if (userEmail.isEmpty()) {
                     email.setError("Provide your Email first!");
                     email.requestFocus();
-                } else if (userPaswd.isEmpty()) {
-                    password.setError("Enter Password!");
-                    password.requestFocus();
-                } else if (userEmail.isEmpty() && userPaswd.isEmpty()) {
+                } else
+                {
+                    if (userPaswd.isEmpty()) {
+                        password.setError("Enter Password!");
+                        password.requestFocus();
+                    } else if (userEmail.isEmpty() && userPaswd.isEmpty()) {
+
                     Toast.makeText(MainActivity.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
-                } else if (!(userEmail.isEmpty() && userPaswd.isEmpty())) {
-                    firebaseAuth.signInWithEmailAndPassword(userEmail, userPaswd).addOnCompleteListener(MainActivity.this, new OnCompleteListener() {
+              // else if (!(userEmail.isEmpty() && userPaswd.isEmpty())) {
+                   firebaseAuth.signInWithEmailAndPassword(userEmail, userPaswd).addOnCompleteListener(MainActivity.this, new OnCompleteListener() {
                         @Override
                         public void onComplete(@NonNull Task task) {
-                            if (!task.isSuccessful()) {
+                           if (!task.isSuccessful()) {
                                 Toast.makeText(MainActivity.this, "Not sucessfull", Toast.LENGTH_SHORT).show();
                             } else {
                                 startActivity(new Intent(MainActivity.this, ListActivity.class));
                             }
                         }
                     });
-                } else {
+                }
+                else {
                     Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
                 }
             }
-        });
+        }}
+        );
 
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        firebaseAuth.addAuthStateListener(authStateListener);
     }
 }
 
