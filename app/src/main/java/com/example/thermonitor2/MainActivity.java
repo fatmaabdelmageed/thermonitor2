@@ -49,28 +49,15 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.buttonLogin);
 
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+       /* btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
                 intent = new Intent(MainActivity.this, ListActivity.class);
                 startActivity(intent);
             }
-        });
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+        });*/
 
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    Toast.makeText(MainActivity.this, "User logged in ", Toast.LENGTH_SHORT).show();
-                    Intent I = new Intent(MainActivity.this, ListActivity.class);
-                    startActivity(I);
-                } else {
-                    Toast.makeText(MainActivity.this, "Login to continue", Toast.LENGTH_SHORT).show();
-                }
-            }
-        };
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "Not sucessfull", Toast.LENGTH_SHORT).show();
                             } else {
                                 startActivity(new Intent(MainActivity.this, ListActivity.class));
-                                finish();
+                                //finish();
                             }
                         }
                     });
@@ -114,6 +101,20 @@ public class MainActivity extends AppCompatActivity {
             }
         }}
         );
+        authStateListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    //Toast.makeText(MainActivity.this, "User logged in ", Toast.LENGTH_SHORT).show();
+                    Intent I = new Intent(MainActivity.this, ListActivity.class);
+                    startActivity(I);
+                } else {
+                    Toast.makeText(MainActivity.this, "Login to continue", Toast.LENGTH_SHORT).show();
+                }
+            }
+        };
 
     }
     @Override
