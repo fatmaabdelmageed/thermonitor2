@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -45,15 +46,16 @@ public class RegisterActivity<email, password> extends AppCompatActivity {
                     String paswd = passwd.getText().toString();
 
                     if (!(emailID.isEmpty() && paswd.isEmpty())) {
-                        firebaseAuth.createUserWithEmailAndPassword(emailID, paswd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener() {
+                        firebaseAuth.createUserWithEmailAndPassword(emailID, paswd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task task) {
 
                                 if (task.isSuccessful()) {
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
                                     Toast.makeText(RegisterActivity.this, "Account is created successfully", Toast.LENGTH_LONG).show();
-                                    finish();
+
                                     startActivity(new Intent(RegisterActivity.this, ListActivity.class));
+                                    finish();
 
                                 } else {
                                     Toast.makeText(RegisterActivity.this.getApplicationContext(),
