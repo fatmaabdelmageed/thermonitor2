@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseApp;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class RegisterActivity<email, password> extends AppCompatActivity {
@@ -42,30 +43,36 @@ public class RegisterActivity<email, password> extends AppCompatActivity {
                 public void onClick(View view) {
                     String emailID = emailId.getText().toString();
                     String paswd = passwd.getText().toString();
+
+                    if (!(emailID.isEmpty() && paswd.isEmpty())) {
+                        firebaseAuth.createUserWithEmailAndPassword(emailID, paswd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener() {
+                            @Override
+                            public void onComplete(@NonNull Task task) {
+
+                                if (task.isSuccessful()) {
+                                    FirebaseUser user = firebaseAuth.getCurrentUser();
+                                    Toast.makeText(RegisterActivity.this, "Account is created successfully", Toast.LENGTH_LONG).show();
+                                    finish();
+                                    startActivity(new Intent(RegisterActivity.this, ListActivity.class));
+
+                                } else {
+                                    Toast.makeText(RegisterActivity.this.getApplicationContext(),
+                                            "SignUp unsuccessful: " + task.getException().getMessage(),
+                                            Toast.LENGTH_SHORT).show();
+
+                                }
+                            }
+                        });
+
+                    }
                     if (emailID.isEmpty()) {
                         emailId.setError("Provide your Email first!");
                         emailId.requestFocus();
                     } else if (paswd.isEmpty()) {
                         passwd.setError("Set your password");
                         passwd.requestFocus();
-                    } else if (emailID.isEmpty() && paswd.isEmpty()) {
+                    } else  {
                         Toast.makeText(RegisterActivity.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
-                    } else if (!(emailID.isEmpty() && paswd.isEmpty())) {
-                        firebaseAuth.createUserWithEmailAndPassword(emailID, paswd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener() {
-                            @Override
-                            public void onComplete(@NonNull Task task) {
-
-                                if (!task.isSuccessful()) {
-                                    Toast.makeText(RegisterActivity.this.getApplicationContext(),
-                                            "SignUp unsuccessful: " + task.getException().getMessage(),
-                                            Toast.LENGTH_SHORT).show();
-                                } else {
-                                    startActivity(new Intent(RegisterActivity.this,     ListActivity.class));
-                                }
-                            }
-                        });
-                    } else {
-                        Toast.makeText(RegisterActivity.this, "Error", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

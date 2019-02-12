@@ -102,13 +102,14 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "Not sucessfull", Toast.LENGTH_SHORT).show();
                             } else {
                                 startActivity(new Intent(MainActivity.this, ListActivity.class));
+                                finish();
                             }
                         }
                     });
                 }
-                else {
-                    Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                }
+                    else {
+                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+                    }
             }
         }}
         );
