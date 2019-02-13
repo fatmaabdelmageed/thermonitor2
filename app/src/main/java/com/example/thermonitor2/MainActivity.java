@@ -49,14 +49,14 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.buttonLogin);
 
 
-       btnLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent;
-                intent = new Intent(MainActivity.this, ListActivity.class);
-                startActivity(intent);
-            }
-        });
+//       btnLogin.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent;
+//                intent = new Intent(MainActivity.this, ListActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
