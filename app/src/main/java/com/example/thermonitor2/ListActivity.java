@@ -20,7 +20,9 @@ public class ListActivity extends AppCompatActivity {
             R.drawable.windows,
             R.drawable.blackberry,
             R.drawable.linux };
-    String items[]= {"Android”, “IOS”, “Windows”, “Blackberry”, “Linux"};
+
+//    String [] items= {"Android”, “IOS” , “Windows”, “Blackberry”, “Linux"};
+    String[] items={"Android","IOS","Windows","Blackberry","Linux"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -31,14 +31,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(R.layout.activity_main);
             FirebaseApp.initializeApp(this);
 
 
        // FirebaseApp.initializeApp(this);
         firebaseAuth = FirebaseAuth.getInstance(); //error
 
-        setContentView(R.layout.activity_main);
+
 
 //        firebaseAuth = FirebaseAuth.getInstance(); //error
         email = findViewById(R.id.email);
@@ -49,14 +49,14 @@ public class MainActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.buttonLogin);
 
 
-       /* btnLogin.setOnClickListener(new View.OnClickListener() {
+       btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent;
                 intent = new Intent(MainActivity.this, ListActivity.class);
                 startActivity(intent);
             }
-        });*/
+        });
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,9 +79,9 @@ public class MainActivity extends AppCompatActivity {
                     if (userPaswd.isEmpty()) {
                         password.setError("Enter Password!");
                         password.requestFocus();
-                    } else if (userEmail.isEmpty() && userPaswd.isEmpty()) {
+                    } else  {
 
-                    Toast.makeText(MainActivity.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
+                   // Toast.makeText(MainActivity.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
               // else if (!(userEmail.isEmpty() && userPaswd.isEmpty())) {
                    firebaseAuth.signInWithEmailAndPassword(userEmail, userPaswd).addOnCompleteListener(MainActivity.this, new OnCompleteListener<AuthResult>() {
                         @Override
@@ -95,9 +95,9 @@ public class MainActivity extends AppCompatActivity {
                         }
                     });
                 }
-                    else {
-                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
-                    }
+//                    else {
+//                        Toast.makeText(MainActivity.this, "Error", Toast.LENGTH_SHORT).show();
+//                    }
             }
         }}
         );

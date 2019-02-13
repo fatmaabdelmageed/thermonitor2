@@ -46,22 +46,23 @@ public class RegisterActivity<email, password> extends AppCompatActivity {
                     String emailID = emailId.getText().toString();
                     String paswd = passwd.getText().toString();
 
-                    if (!(emailID.isEmpty() && paswd.isEmpty())) {
+                    if (emailID.isEmpty()) {
+                        emailId.setError("Provide your Email first!");
+                        emailId.requestFocus();
+                    } else if (paswd.isEmpty()) {
+                        passwd.setError("Set your password");
+                        passwd.requestFocus();
+                    }else{
+//                        Toast.makeText(RegisterActivity.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
+//
+//
+//                    else {
                         firebaseAuth.createUserWithEmailAndPassword(emailID, paswd).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+
                             @Override
                             public void onComplete(@NonNull Task task) {
-                                if (emailID.isEmpty() &&paswd.isEmpty() ){
-                                    Toast.makeText(RegisterActivity.this, "Fields Empty!", Toast.LENGTH_SHORT).show();
 
-                                }
-                               else if (emailID.isEmpty()) {
-                                    emailId.setError("Provide your Email first!");
-                                    emailId.requestFocus();
-                                } else if (paswd.isEmpty()) {
-                                    passwd.setError("Set your password");
-                                    passwd.requestFocus();
-                                }
-                                if (!(task.isSuccessful())) {
+                                 if (!(task.isSuccessful())) {
                                     Toast.makeText(RegisterActivity.this.getApplicationContext(),
                                             "SignUp unsuccessful: " + task.getException().getMessage(),
                                             Toast.LENGTH_SHORT).show();
@@ -70,9 +71,9 @@ public class RegisterActivity<email, password> extends AppCompatActivity {
 
                                 } else {
                                     FirebaseUser user = firebaseAuth.getCurrentUser();
-                                    //Toast.makeText(RegisterActivity.this, "Account is created successfully", Toast.LENGTH_LONG).show();
-
-                                    startActivity(new Intent(RegisterActivity.this, ListActivity.class));
+                                    Toast.makeText(RegisterActivity.this, "Account is created successfully", Toast.LENGTH_LONG).show();
+                                    Intent I =new Intent(RegisterActivity.this, ListActivity.class);
+                                    startActivity(I);
 
                                 }
                             }
